@@ -67,8 +67,57 @@ app.post("/webhook", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to my MongoDB application." });
-});
+    res.send(`
+      <html>
+        <head>
+          <title>API Operations</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            h1 { color: #333; }
+            ul { list-style-type: none; padding: 0; }
+            li { margin-bottom: 10px; }
+            a { color: #007bff; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+          </style>
+        </head>
+        <body>
+          <h1>Metro Backend</h1>
+          <p>Available API endpoints:</p>
+  
+          <h2>User API Endpoints:</h2>
+          <ul>
+            <li><a href="/api/users">Get All Users</a></li>
+            <li><a href="/api/users/1">Get User by ID (Example: ID = 1)</a></li>
+            <li><a href="/api/users/login">Login User</a></li>
+            <li><a href="/api/users/register">Register User</a></li>
+          </ul>
+  
+          <h2>Product API Endpoints:</h2>
+          <ul>
+            <li><a href="/api/products">Get All Products</a></li>
+            <li><a href="/api/products/1">Get Product by ID (Example: ID = 1)</a></li>
+            <li><a href="/api/products/create">Create a New Product</a></li>
+            <li><a href="/api/products/update/1">Update Product (Example: ID = 1)</a></li>
+            <li><a href="/api/products/delete/1">Delete Product (Example: ID = 1)</a></li>
+          </ul>
+  
+          <h2>Order API Endpoints:</h2>
+          <ul>
+            <li><a href="/api/orders">Get All Orders</a></li>
+            <li><a href="/api/orders/user/1">Get Orders by User ID (Example: User ID = 1)</a></li>
+            <li><a href="/api/orders/create">Create a New Order</a></li>
+            <li><a href="/api/orders/delete/1">Delete Order (Example: ID = 1)</a></li>
+          </ul>
+  
+          <h2>API Response Example:</h2>
+          <pre>
+          <code>GET /api/orders --> Returns a list of all orders.</code>
+          </pre>
+        </body>
+      </html>
+    `);
+  });
+  
 
 // Export the app for Vercel serverless functions
 module.exports = app;
